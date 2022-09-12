@@ -1,0 +1,489 @@
+﻿<Window x:Class="AppForm.TeacherForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="TeacherForm" 
+        Height="700" 
+        Width="1000"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Foreground="{DynamicResource FontColor}"
+        FontFamily="Inter">
+    <Border CornerRadius="20"
+            Background="{DynamicResource PrimaryColor}">
+        <Grid>
+            <materialDesign:Card>
+                <TabControl Background="{DynamicResource PrimaryColor}"
+                            Foreground="{DynamicResource FontColor}"
+                            SnapsToDevicePixels="True"
+                            Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                            TabStripPlacement="Left"
+                            materialDesign:NavigationRailAssist.SelectionCornerRadius="20"
+                            materialDesign:ColorZoneAssist.Mode="Standard"
+                            materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                            MouseLeftButtonDown="Drag_Move"
+                            x:Name="tabContol"
+                            SelectionChanged="TabControl_SelectionChanged">
+                    <TabItem Margin="0 20 0 0" 
+                             VerticalAlignment="Top"
+                             Foreground="{DynamicResource FontColor}">
+                        <TabItem.Header>
+                            <materialDesign:PackIcon Kind="User" 
+                                                         Foreground="{DynamicResource FontColor}"
+                                                         Width="30" 
+                                                         Height="30"/>
+                        </TabItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="14*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Профиль" 
+                                       FontSize="20" 
+                                       VerticalAlignment="Center"
+                                       Margin="20 0 0 0"/>
+                            <DockPanel Grid.Row="1" 
+                                       VerticalAlignment="Top" 
+                                       LastChildFill="True"
+                                       Margin="20,0,0,0">
+                                <StackPanel HorizontalAlignment="Left" Margin="0 10 0 0">
+                                    <Ellipse Width="200" 
+                                             Height="200"
+                                             HorizontalAlignment="Center" 
+                                             Fill="LightGray"
+                                             x:Name="image">
+                                        
+                                    </Ellipse>
+                                    <Button Background="{DynamicResource AccentColor}" 
+                                            BorderBrush="#FF09C1F4"
+                                            Content="Загрузить"
+                                            Width="150" Margin="0,40,0,0" Click="UploadImageButton_Click">
+                                    </Button>
+                                </StackPanel>
+                                <!--FIELDS-->
+                                <StackPanel x:Name="spFields" Margin="10 0 0 0">
+                                    <TextBox Style="{DynamicResource MaterialDesignOutlinedTextBox}" 
+                                             materialDesign:HintAssist.Hint="Имя"
+                                             materialDesign:HintAssist.Background="Transparent"
+                                             materialDesign:HintAssist.Foreground="{DynamicResource AccentColor}"
+                                             Background="{DynamicResource SecondaryColor}"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                             Margin="0,10,0,0"
+                                             x:Name="tbFirstName"/>
+                                    <TextBox Style="{DynamicResource MaterialDesignOutlinedTextBox}" 
+                                             materialDesign:HintAssist.Hint="Фамилия"
+                                             materialDesign:HintAssist.Background="Transparent"
+                                             materialDesign:HintAssist.Foreground="{DynamicResource AccentColor}"
+                                             Background="{DynamicResource SecondaryColor}"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                             Margin="0,15,0,0"
+                                             x:Name="tbLastName"/>
+                                    <TextBox Style="{DynamicResource MaterialDesignOutlinedTextBox}" 
+                                             materialDesign:HintAssist.Hint="Возраст"
+                                             materialDesign:HintAssist.Background="Transparent"
+                                             materialDesign:HintAssist.Foreground="{DynamicResource AccentColor}"
+                                             Background="{DynamicResource SecondaryColor}"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                             Margin="0,15,0,0"
+                                             x:Name="tbAge"/>
+                                    <TextBox Style="{DynamicResource MaterialDesignOutlinedTextBox}" 
+                                             materialDesign:HintAssist.Hint="Почта"
+                                             materialDesign:HintAssist.Background="Transparent"
+                                             materialDesign:HintAssist.Foreground="{DynamicResource AccentColor}"
+                                             Background="{DynamicResource SecondaryColor}"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                             Margin="0,15,0,0"
+                                             x:Name="tbMail"/>
+                                    <PasswordBox Style="{DynamicResource MaterialDesignOutlinedPasswordBox}" 
+                                             materialDesign:HintAssist.Hint="Пароль"
+                                             materialDesign:HintAssist.Background="Transparent"
+                                             materialDesign:HintAssist.Foreground="{DynamicResource AccentColor}"
+                                             Background="{DynamicResource SecondaryColor}"
+                                             BorderThickness="1"
+                                                 BorderBrush="Black"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                             Margin="0,15,0,0" 
+                                             IsEnabled="False"
+                                             x:Name="tbPassword"/>
+                                    <DatePicker Background="{DynamicResource SecondaryColor}"
+                                             materialDesign:HintAssist.Foreground="{DynamicResource AccentColor}"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                             materialDesign:HintAssist.Hint="Дата пождения"
+                                             Margin="0,15,0,0"
+                                             Padding="7 12"
+                                             x:Name="tbDatatime">
+                                        <DatePicker.Resources>
+                                            <Style
+                                                  x:Key="CustomCalendarDayButton"
+                                                  TargetType="CalendarDayButton"
+                                                 BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+                                                <Setter
+                                                       Property="materialDesign:CalendarAssist.SelectionColor"
+                                                       Value="#B2F39B" />
+                                                <Setter
+                                                      Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+                                                      Value="Black" />
+                                            </Style>
+                                            <Style
+                                                 x:Key="CustomCalendarButton"
+                                                 TargetType="CalendarButton"
+                                                 BasedOn="{StaticResource MaterialDesignCalendarButton}">
+                                                <Setter
+                                                       Property="materialDesign:CalendarAssist.SelectionColor"
+                                                       Value="#B2F39B" />
+                                                <Setter
+                                                       Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+                                                       Value="Black" />
+                                            </Style>
+                                            <Style
+                                                  x:Key="CustomCalendar"
+                                                  TargetType="{x:Type Calendar}"
+                                                  BasedOn="{StaticResource MaterialDesignDatePickerCalendarPortrait}">
+                                                <Setter
+                                                       Property="Background"
+                                                       Value="#343C3F" />
+                                                <Setter
+                                                       Property="Foreground"
+                                                       Value="White" />
+                                                <Setter
+                                                       Property="materialDesign:CalendarAssist.HeaderBackground"
+                                                       Value="{DynamicResource AccentColor}" />
+                                                <Setter
+                                                       Property="materialDesign:CalendarAssist.HeaderForeground"
+                                                       Value="Black" />
+                                                <Setter
+                                                       Property="CalendarDayButtonStyle"
+                                                       Value="{StaticResource CustomCalendarDayButton}" />
+                                                <Setter
+                                                       Property="CalendarButtonStyle"
+                                                       Value="{StaticResource CustomCalendarButton}" />
+                                            </Style>
+                                            <Style
+                                                  TargetType="DatePicker"
+                                                  BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                                <Setter
+                                                       Property="CalendarStyle"
+                                                       Value="{StaticResource CustomCalendar}" />
+                                            </Style>
+                                        </DatePicker.Resources>
+                                    </DatePicker>
+
+                                </StackPanel>
+                            </DockPanel>
+                            <Button Grid.Row="3" 
+                                    Content="Потвердить" 
+                                    Background="{DynamicResource AccentColor}" 
+                                    BorderBrush="#FF09C1F4"
+                                    Width="120"
+                                    Height="40"
+                                    HorizontalAlignment="Right"
+                                    Click="SetProfileButton_Click"/>
+                            <StackPanel Grid.Column="1" 
+                                        Grid.Row="1"
+                                        Margin="20 0 20 0">
+                                <TextBlock Text="Ваши специальности:"/>
+                                <DockPanel LastChildFill="True">
+                                    <Button DockPanel.Dock="Right" 
+                                            Style="{DynamicResource MaterialDesignOutlinedDarkButton}" 
+                                            Content="+"
+                                            Margin="20 0 0 0" Click="AddCourseButton_Click"/>
+                                    <ComboBox Background="{DynamicResource SecondaryColor}"
+                                              Padding="20"
+                                              x:Name="comboBoxCourses">
+                                    </ComboBox>
+                                </DockPanel>
+                                <TextBlock Text="Ваши группы:"
+                                           Margin="0 20 0 0"/>
+                                <DockPanel LastChildFill="True">
+                                    <Button DockPanel.Dock="Right" 
+                                            Style="{DynamicResource MaterialDesignOutlinedDarkButton}" 
+                                            Content="+"
+                                            Margin="20 0 0 0" Click="AddGroupButton_Click"/>
+                                    <ComboBox Background="{DynamicResource SecondaryColor}"
+                                              x:Name="comboBoxGroups"
+                                              Padding="20">
+                                    </ComboBox>
+                                </DockPanel>
+
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Foreground="{DynamicResource FontColor}"
+                             FontFamily="Inter"
+                             Selector.IsSelected="True">
+                        <TabItem.Header>
+                            <Image Source="Icons\home.png" 
+                                           RenderOptions.BitmapScalingMode="HighQuality"
+                                           Width="25" 
+                                           Height="25"/>
+                        </TabItem.Header>
+                        <ScrollViewer Margin="20 40 20 0"
+                                      VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock Text="Добро пожаловать, @user" 
+                                           FontSize="15" 
+                                           FontWeight="SemiBold"
+                                           Margin="15 20 15 0"
+                                           Name="tbHeader"/>
+                                <Grid Margin="15 20 15 0">
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <DatePicker Name="dtTerm"
+                                                    materialDesign:HintAssist.Foreground="{DynamicResource AccentColor}"
+                                                    materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                                    materialDesign:HintAssist.Hint="Срок"
+                                                    BorderBrush="#FF673AB7"
+                                                    MinWidth="150"
+                                                    Padding="12 4"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0 0 20 0">
+                                            <DatePicker.Resources>
+                                                <Style
+                                                  x:Key="CustomCalendarDayButton"
+                                                  TargetType="CalendarDayButton"
+                                                 BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+                                                    <Setter
+                                                       Property="materialDesign:CalendarAssist.SelectionColor"
+                                                       Value="#B2F39B" />
+                                                    <Setter
+                                                      Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+                                                      Value="Black" />
+                                                </Style>
+                                                <Style
+                                                 x:Key="CustomCalendarButton"
+                                                 TargetType="CalendarButton"
+                                                 BasedOn="{StaticResource MaterialDesignCalendarButton}">
+                                                    <Setter
+                                                       Property="materialDesign:CalendarAssist.SelectionColor"
+                                                       Value="#B2F39B" />
+                                                    <Setter
+                                                       Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+                                                       Value="Black" />
+                                                </Style>
+                                                <Style
+                                                  x:Key="CustomCalendar"
+                                                  TargetType="{x:Type Calendar}"
+                                                  BasedOn="{StaticResource MaterialDesignDatePickerCalendarPortrait}">
+                                                    <Setter
+                                                       Property="Background"
+                                                       Value="#343C3F" />
+                                                    <Setter
+                                                       Property="Foreground"
+                                                       Value="White" />
+                                                    <Setter
+                                                       Property="materialDesign:CalendarAssist.HeaderBackground"
+                                                       Value="{DynamicResource AccentColor}" />
+                                                    <Setter
+                                                       Property="materialDesign:CalendarAssist.HeaderForeground"
+                                                       Value="Black" />
+                                                    <Setter
+                                                       Property="CalendarDayButtonStyle"
+                                                       Value="{StaticResource CustomCalendarDayButton}" />
+                                                    <Setter
+                                                       Property="CalendarButtonStyle"
+                                                       Value="{StaticResource CustomCalendarButton}" />
+                                                </Style>
+                                                <Style
+                                                  TargetType="DatePicker"
+                                                  BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                                    <Setter
+                                                       Property="CalendarStyle"
+                                                       Value="{StaticResource CustomCalendar}" />
+                                                </Style>
+                                            </DatePicker.Resources>
+                                        </DatePicker>
+
+                                        <StackPanel VerticalAlignment="Center">
+                                            <Button HorizontalAlignment="Center" 
+                                                Content="+" 
+                                                Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                                ToolTip="Добавить дз для группы" 
+                                                Click="AddHomeWorkProfileButton_Click" Cursor="Hand"/>
+                                            <TextBlock Text="Добавить дз" 
+                                                   FontSize="10" 
+                                                   Opacity="0.4"
+                                                   Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Left" 
+                                                Margin="0 10 0 0"
+                                                Orientation="Horizontal">
+                                        <StackPanel Margin="0 0 40 0">
+                                            <TextBlock Text="Группа:"/>
+                                            <ComboBox Padding="20"
+                                                  HorizontalContentAlignment="Left"
+                                                  x:Name="cbHomeGroups"
+                                                  Background="{DynamicResource SecondaryColor}"
+                                                  HorizontalAlignment="Left"
+                                                  SelectionChanged="cbHomeGroups_SelectionChanged">
+                                            </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel>
+                                            <TextBlock Text="Курс:"/>
+                                            <ComboBox Padding="20"
+                                                  HorizontalContentAlignment="Left"
+                                                  x:Name="cbHomeGroupCourses"
+                                                  Background="{DynamicResource SecondaryColor}"
+                                                  HorizontalAlignment="Left"
+                                                  SelectionChanged="cbHomeGroupCourses_SelectionChanged">
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                                <!--HomeWorks-->
+                                <Border Background="{DynamicResource SecondaryColor}"
+                                        Margin="15,40,15,0"
+                                        CornerRadius="10"
+                                        Padding="20">
+                                    <StackPanel>
+                                        <TextBlock Text="Непроверенные домашние задания:" 
+                                               FontSize="15" 
+                                               FontWeight="SemiBold"
+                                               Margin="0 0 0 20"/>
+                                        <StackPanel x:Name="spUncheckedHomeWorks" >
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Black" 
+                                                          BlurRadius="20" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border Background="{DynamicResource SecondaryColor}"
+                                        Margin="15,40,15,0"
+                                        CornerRadius="10"
+                                        Padding="20">
+                                    <StackPanel>
+                                        <TextBlock Text="Загруженные домашние задания:" 
+                                               FontSize="15" 
+                                               FontWeight="SemiBold"
+                                               Margin="0 0 0 20"/>
+                                        <StackPanel x:Name="spHomeWorks" >
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Black" 
+                                                          BlurRadius="20" />
+                                    </Border.Effect>
+                                </Border>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Margin="0,30,0,0"
+                             Foreground="{DynamicResource FontColor}"
+                             FontFamily="Inter">
+                        <TabItem.Header>
+                            <materialDesign:PackIcon Kind="Settings" 
+                                                         Foreground="{DynamicResource FontColor}"
+                                                         Width="30" 
+                                                         Height="30"/>
+                        </TabItem.Header>
+                        <Grid>
+                            <TextBlock VerticalAlignment="Top"
+                                       Margin="20 20 0 0"
+                                       Text="Настройки"
+                                       FontSize="15" 
+                                       FontWeight="SemiBold"/>
+                            <ScrollViewer Margin="20 50 0 0"
+                                          VerticalScrollBarVisibility="Auto">
+                                <StackPanel>
+                                    <Grid>
+                                        <StackPanel HorizontalAlignment="Left" 
+                                                Margin="0 5 0 0"
+                                                Orientation="Horizontal"
+                                                VerticalAlignment="Center">
+                                            <StackPanel Margin="0 0 40 0">
+                                                <TextBlock Text="Группа:"/>
+                                                <ComboBox Padding="20"
+                                                  HorizontalContentAlignment="Left"
+                                                  x:Name="cbSettingsGroups"
+                                                  Background="{DynamicResource SecondaryColor}"
+                                                  HorizontalAlignment="Left"
+                                                  SelectionChanged="cbSettingsGroups_SelectionChanged">
+                                                </ComboBox>
+                                            </StackPanel>
+                                            <StackPanel>
+                                                <TextBlock Text="Курс:"/>
+                                                <ComboBox Padding="20"
+                                                  HorizontalContentAlignment="Left"
+                                                  x:Name="cbSettingsGroupCourses"
+                                                  Background="{DynamicResource SecondaryColor}"
+                                                  HorizontalAlignment="Left"
+                                                  SelectionChanged="cbSettingsGroupCourses_SelectionChanged">
+                                                </ComboBox>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel HorizontalAlignment="Right" 
+                                                    Orientation="Horizontal" 
+                                                    Margin="0 0 20 0">
+                                            <Button Content="Удалить выбранных студентов"  
+                                                    Margin="0 0 40 0" 
+                                                    FontSize="12" 
+                                                    Click="DeleteSelectedStudentButton_Click" />
+                                            <Button Content="Удалить курс"  
+                                                    Margin="0 0 40 0" Click="DeleteCourseButton_Click" />
+                                            <Button Content="Удалить группу" 
+                                                    Style="{DynamicResource MaterialDesignOutlinedDarkButton}" Click="DeleteGroupButton_Click"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <DataGrid x:Name="dgStudents" 
+                                              AutoGenerateColumns="false"
+                                              DataContext="{Binding tabledatas}"
+                                              FontSize="10"
+                                              HorizontalAlignment="Center"
+                                              Margin="0 20 0 0"
+                                              GridLinesVisibility="All"
+                                              CanUserAddRows="False"
+                                              CanUserReorderColumns="False"
+                                              CanUserDeleteRows="False">
+                                        <DataGrid.Resources>
+                                        </DataGrid.Resources>
+                                        <DataGrid.Columns>
+                                            <DataGridCheckBoxColumn Header="Выбрать" Binding="{Binding IsSelected, Mode=TwoWay}"/>
+                                            <DataGridTextColumn Header="Имя студента" Binding="{Binding StudentFullName}" FontSize="14"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Возраст" Binding="{Binding Age}" FontSize="14"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Средняя оценка" Binding="{Binding Average}" FontSize="14"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Кол-во выполненных дз" Binding="{Binding CountCompletedHomeWorks}" FontSize="14"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Кол-во выполненных дз не в срок" Binding="{Binding CountOverdueHomeWorks}" FontSize="14"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Не выполненные дз" Binding="{Binding CountNotCompletedHomeWorks}" FontSize="14"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Margin="0,50,0,0">
+                        <TabItem.Header>
+                            <materialDesign:PackIcon Kind="ExitToApp" 
+                                                         Foreground="{DynamicResource FontColor}"
+                                                         Width="30"
+                                                         Height="30"
+                                                         Opacity="0.4"/>
+                        </TabItem.Header>
+                    </TabItem>
+                </TabControl>
+            </materialDesign:Card>
+            <StackPanel HorizontalAlignment="Right" 
+                        VerticalAlignment="Top" 
+                        Margin="0,10,10,0"
+                        Orientation="Horizontal">
+                <Button Style="{DynamicResource ToolsButton}"
+                        Background="#C4C4C4" 
+                        Margin="0,0,5,0"
+                        Click="HideButton_Click"/>
+                <Button Style="{DynamicResource ToolsButton}" 
+                        Background="#EE3838"
+                        Click="CloseButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
+

@@ -1,0 +1,210 @@
+﻿<Window x:Class="RegistrationForm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RegistrationForm"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1000"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Foreground="{DynamicResource FontColor}"
+        FontFamily="Inter">
+    <Border Background="{DynamicResource PrimaryColor}" 
+            MouseLeftButtonDown="Drag_Move"
+            CornerRadius="20">
+        <Grid>
+            <StackPanel HorizontalAlignment="Right" 
+                        VerticalAlignment="Top" 
+                        Margin="0,10,10,0"
+                        Orientation="Horizontal">
+                <Button Style="{DynamicResource ToolsButton}"
+                        Background="#C4C4C4" 
+                        Margin="0,0,5,0"
+                        Click="HideButton_Click"/>
+                <Button Style="{DynamicResource ToolsButton}" 
+                        Background="#EE3838"
+                        Click="CloseButton_Click"/>
+
+            </StackPanel>
+            <Border HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Height="550"
+                Width="400"
+                Background="{DynamicResource SecondaryColor}"
+                CornerRadius="20">
+                <Grid>
+                    <StackPanel>
+                        <!--GROUP 1 - HEADER-->
+                        <TextBlock Text="Регистрация" 
+                               FontSize="32" 
+                               FontWeight="SemiBold" 
+                               HorizontalAlignment="Center"
+                               Margin="0,25,0,0"
+                               Name="tbHeader"
+                                   />
+                        <Border Background="{DynamicResource PrimaryColor}"
+                            CornerRadius="10" 
+                            Width="220"
+                            Margin="0,10,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="selectUser" 
+                                        Background="{DynamicResource AccentColor}"
+                                        CornerRadius="10 0 0 10"/>
+                                <Grid MouseLeave="UserSelect_MouseLeave" 
+                                      MouseEnter="UserSelect_MouseEnter"
+                                      MouseLeftButtonDown="UserSelect_MouseLeftButtonDown"
+                                      Background="Transparent">
+                                    <TextBlock Text="Учитель" 
+                                   FontSize="15"
+                                   HorizontalAlignment="Center"
+                                   Margin="7"/>
+                                </Grid>
+                                <Grid Grid.Column="1"
+                                      MouseLeave="UserSelect_MouseLeave" 
+                                      MouseEnter="UserSelect_MouseEnter"
+                                      MouseLeftButtonDown="UserSelect_MouseLeftButtonDown"
+                                      Background="Transparent">
+                                    <TextBlock Text="Ученик" 
+                                   FontSize="15"
+                                   HorizontalAlignment="Center"
+                                   Margin="7"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <StackPanel x:Name="spRegistration"
+                                    Visibility="Visible">
+                            <!--GROUP 2 - FIELDS-->
+                            <StackPanel Margin="70,50,70,0" 
+                                        x:Name="spRgFields">
+                                <TextBox materialDesign:HintAssist.Hint="Имя..." 
+                                         x:Name="tbRgFirstName"/>
+
+                                <TextBox materialDesign:HintAssist.Hint="Фамилия..." 
+                                         Margin="0,20,0,0"
+                                         x:Name="tbRgLastName"/>
+
+                                <TextBox materialDesign:HintAssist.Hint="Возраст..." 
+                                         Margin="0,20,0,0"
+                                         x:Name="tbRgAge"/>
+
+                                <TextBox materialDesign:HintAssist.Hint="Почта..." 
+                                         Margin="0,20,0,0"
+                                         x:Name="tbRgMail"/>
+
+                                <PasswordBox materialDesign:HintAssist.Hint="Пароль..." 
+                                         Margin="0,20,0,0"
+                                         x:Name="tbRgPassWord"/>
+
+                                <PasswordBox materialDesign:HintAssist.Hint="Подтвердите пароль..." 
+                                         Margin="0,20,0,0"
+                                         x:Name="tbRgConfirmPassWord" Cursor="Arrow"/>
+
+                                <Button 
+                                        Content="Есть аккаунт?"
+                                        FontSize="10"
+                                        Padding="0"
+                                        Style="{DynamicResource MaterialDesignToolButton}"
+                                        HorizontalAlignment="Center"
+                                        Click="HaveAccountButton_Click" Cursor="Hand"/>
+
+                                <Grid Margin="0,10,0,0">
+                                    <Button HorizontalAlignment="Left" 
+                                            Content="Очистить" 
+                                            Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                                            FontWeight="Regular"
+                                            FontSize="13" 
+                                            Click="RegClearButton_Click"/>
+
+                                    <Button HorizontalAlignment="Right" 
+                                            Content="Создать"
+                                            FontWeight="Regular"
+                                            Background="{DynamicResource AccentColor}"
+                                            Foreground="{DynamicResource FontColor}"
+                                            BorderThickness="0"
+                                            FontSize="13"
+                                            Padding="25 0"
+                                            Click="RequireRegistrationButton_Click"
+                                            Cursor="Hand">
+
+                                        <Button.Style>
+                                            <Style>
+                                                <Style.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5" />
+                                                    </Style>
+                                                </Style.Resources>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </Grid>
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel x:Name="spEnter" 
+                                    Visibility="Collapsed">
+                            <!--GROUP 2 - FIELDS-->
+                            <StackPanel Margin="70,100,70,0" 
+                                        x:Name="spEnterFields">
+                                <TextBox materialDesign:HintAssist.Hint="Почта..." 
+                                         Margin="0,20,0,0"
+                                         x:Name="tbEnterMail"/>
+
+                                <PasswordBox materialDesign:HintAssist.Hint="Пароль..." 
+                                         Margin="0,20,0,0"
+                                         x:Name="tbEnterPassWord"/>
+                                <Button Content="Нет аккаунта?"
+                                        FontSize="10"
+                                        Padding="0"
+                                        Style="{DynamicResource MaterialDesignToolButton}"
+                                        HorizontalAlignment="Center"
+                                        Click="NotHaveAccount_Click"/>
+
+                                <Grid Margin="0,70,0,0">
+                                    <Button HorizontalAlignment="Left" 
+                                            Content="Очистить" 
+                                            Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                                            FontWeight="Regular"
+                                            FontSize="13" 
+                                            Click="RegClearButton_Click"/>
+
+                                    <Button HorizontalAlignment="Right" 
+                                            Content="Войти"
+                                            FontWeight="Regular"
+                                            Background="{DynamicResource AccentColor}"
+                                            Foreground="{DynamicResource FontColor}"
+                                            Padding="25 0"
+                                            BorderThickness="0"
+                                            FontSize="13"
+                                            Click="EnterButton_Click"
+                                            Cursor="Hand"
+                                            >
+
+                                        <Button.Style>
+                                            <Style>
+                                                <Style.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5" />
+                                                    </Style>
+                                                </Style.Resources>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </Grid>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+        </Grid>
+    </Border>
+</Window>

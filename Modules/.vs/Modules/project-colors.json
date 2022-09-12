@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "9829b005-358f-48c8-9e16-049ce145bc71": {
+      "ProjectGuid": "9829b005-358f-48c8-9e16-049ce145bc71",
+      "DisplayName": "Modules",
+      "ColorIndex": 0
+    },
+    "76a31687-ee88-4697-8648-ff876f7b9665": {
+      "ProjectGuid": "76a31687-ee88-4697-8648-ff876f7b9665",
+      "DisplayName": "Console",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}

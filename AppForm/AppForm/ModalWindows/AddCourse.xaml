@@ -1,0 +1,41 @@
+﻿<Window x:Class="AppForm.ModalWindows.AddCourse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppForm.ModalWindows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="AddCourse" 
+        Height="300" 
+        Width="400"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Foreground="{DynamicResource FontColor}"
+        FontFamily="Inter">
+    <Border Background="{DynamicResource PrimaryColor}"
+            CornerRadius="20">
+        <StackPanel VerticalAlignment="Center"
+                    Margin="40 0">
+            <TextBlock Text="Добавить специальность"
+                       HorizontalAlignment="Center" Margin="0 0 0 20"/>
+            <TextBox materialDesign:HintAssist.Hint="Название специальности" 
+                     materialDesign:TextFieldAssist.HasClearButton="True"
+                     Margin="0 0 0 20"
+                     x:Name="tbCourse"
+                     TextChanged="tbCourse_TextChanged"/>
+            <Grid>
+                <Button Content="Добавить"
+                        HorizontalAlignment="Right" 
+                        Click="AddButton_Click"
+                        x:Name="btAdd"
+                        IsEnabled="false"/>
+                <Button Content="Отменить"
+                        HorizontalAlignment="Left"
+                        Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                        Click="CloseButton_Click"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>

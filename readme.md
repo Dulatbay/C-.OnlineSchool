@@ -1,0 +1,1 @@
+Educational desktop app
